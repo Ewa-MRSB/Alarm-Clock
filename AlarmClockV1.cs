@@ -68,7 +68,7 @@ public class AlarmClockV2
             Console.WriteLine("Alarm Manager \n Active Alarms:\n");
             Alarm_Manager(1, [""]);
             Console.WriteLine("\n");
-            Console.Write($"Enter which alarm you would like to delete: {Delete_Index}");
+            Console.Write($"Enter which alarm you would like to delete: {Delete_Index} \n Press [Escape] To Exit.");
         }
     }
 
@@ -170,7 +170,7 @@ public class AlarmClockV2
         {
             foreach (DateTime Alarm in Alarms)
             {
-                if (DateTime.Now.ToString("MM/dd/yy hh:mm").Equals(Alarm.ToString("MM/dd/yy hh:mm"))) { return "true"; }
+                if (DateTime.Now.ToString("MM/dd/yy hh:mm tt").Equals(Alarm.ToString("MM/dd/yy hh:mm tt"))) { return "true"; }
             }
             return "false";
         }
@@ -179,8 +179,8 @@ public class AlarmClockV2
         {
             for(int i = 0; i < Alarms.Count; i++)
             {
-                if (settings[0].Equals("hide")) { Console.WriteLine("\t" + Alarms[i].ToString("MM/dd/yy hh:mm")); }
-                else { Console.WriteLine($"\t{i}: " + Alarms[i].ToString("MM/dd/yy hh:mm")); }
+                if (settings[0].Equals("hide")) { Console.WriteLine("\t" + Alarms[i].ToString("MM/dd/yy hh:mm tt")); }
+                else { Console.WriteLine($"\t{i}: " + Alarms[i].ToString("MM/dd/yy hh:mm tt")); }
             }
             return "";
         }
@@ -203,7 +203,7 @@ public class AlarmClockV2
         {
             if (Console.KeyAvailable) { Input_Manager(Console.ReadKey(intercept: true)); }
             Refresh_Screen();
-            if (Alarm_Status && Alarm_Manager(0).Equals("true")) { if (!Current_State.Equals("Alarm_Set_Off")) { Current_State = "Alarm_Set_Off"; Console.Clear(); Alarms.RemoveAt(int.Parse(Alarm_Manager(2)));  } }
+            if (Alarm_Manager(0).Equals("true")) { if (!Current_State.Equals("Alarm_Set_Off")) { Alarms.RemoveAt(int.Parse(Alarm_Manager(2))); Current_State = "Alarm_Set_Off"; Console.Clear();  } }
             await Task.Delay(100);
         }
 
