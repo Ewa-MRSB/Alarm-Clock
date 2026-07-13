@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class AlarmClockV2
+public class AlarmClock
 {
     static String Current_State = "Main";
     static List<DateTime> Alarms = new List<DateTime>();
